@@ -1,20 +1,32 @@
-## Project - C - printf
+# Group Project - C - _printf
 
-### Authors
+## Authors
 
 - Antonio Torres 🎵
 - Luis Felipe Gonzalez 🐕
-- Joshua Santiago 🐈‍
+- Joshua Santiago 🐱
+
+## Synopsis
 
 This project implements a custom function, `_printf`, that produces output based on a format string.
 
-%c - prints a character
-%s - prints a string
-%% - prints a literal percent sign
+Supported format specifiers:
 
-`int _printf(const char *format, ...);`
+- `%c` - prints a character
+- `%s` - prints a string
+- `%d` - prints a decimal integer
+- `%i` - prints an integer
+- `%%` - prints a literal percent sign
+
+Only these format specifiers are supported in this implementation.
+
+## Prototype
+```c
+int _printf(const char *format, ...);
+```
 
 ## Files
 
-main.h - Header file containing function prototypes and macros.
-_printf.c - Implementation of the custom `_printf` function.
+- `main.h` - Header file containing function prototypes.
+- `_printf.c` - Implementation of the custom `_printf` function.
+- `man_3_printf.3` - Man page with information about `_printf`.
