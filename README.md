@@ -18,8 +18,6 @@ Supported format specifiers:
 - `%i` - prints an integer
 - `%%` - prints a literal percent sign
 
-Only these format specifiers are supported in this implementation.
-
 ## Prototype
 ```c
 int _printf(const char *format, ...);
