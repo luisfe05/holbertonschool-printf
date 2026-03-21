@@ -28,7 +28,10 @@
         {
             ptr_string++; /*jumps % and points to 's'*/
             if (!*ptr_string)
-                return (count);
+            {
+                    va_end(args); /*end the arguments*/
+                    return (count); /*return the number of printed characters*/
+            }
             if (*ptr_string == 'c') /*prints 1 character for c*/
                 count += print_char(args); 
             else if (*ptr_string == 's') /*print a string for %s*/
