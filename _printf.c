@@ -28,15 +28,23 @@
         {
             ptr_string++; /*jumps % and points to 's'*/
             if (!*ptr_string)
-                return (-1);
-            if (*ptr_string == 'c')
-                count += print_char(args); /*prints one character*/
-            else if (*ptr_string == 's')
-                count += print_string(args); /*print sentence*/
-            else if (*ptr_string == '%')
+                return (count);
+            if (*ptr_string == 'c') /*prints 1 character for c*/
+                count += print_char(args); 
+            else if (*ptr_string == 's') /*print a string for %s*/
+                count += print_string(args);
+            else if (*ptr_string == 'd' || *ptr_string == 'i') /*prints interger for %d and %i */
+                count += print_int(args); 
+            else if (*ptr_string == '%') /*prints '%'*/
             {
                 write(1, "%", 1); /*prints '%'*/
                 count ++;
+            }
+            else
+            {
+                write(1, "%", 1);
+                write(1, ptr_string, 1); /*prints unknown character*/
+                count += 2;
             }
         }
         ptr_string++;
