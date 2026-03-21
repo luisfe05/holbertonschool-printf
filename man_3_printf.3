@@ -1,0 +1,78 @@
+.TH _PRINTF 3 "March 20, 2026" "V-1.0"
+.SH NAME
+.B _printf
+\- a custom function to print formatted output
+.SH SYNOPSIS
+.B #include "main.h"
+.P
+is the header file that contains the prototype of the function.
+.P
+The following header files are also required:
+.B #include <stdarg.h>  /* for va_list, va_start, va_arg, va_end */
+.B #include <unistd.h> /* for write */
+.P
+inside the source file that contains the implementation of the function.
+.P
+.B int _printf(const char *format, ...);
+.B int print_char(va_list args); /*prints %c*/ 
+.B int print_string(va_list args); /*prints %s*/
+.B int print_int(va_list args); /*prints %d and %i*/
+.SH DESCRIPTION
+The
+.B _printf
+function writes output to the standard output stream, under the control of the string format which specifies how subsequent arguments are converted for output.
+.P
+The use of _printf is similar to printf, but it only supports
+a limited set of format specifiers:
+.TP
+.B %c
+Print a character.
+.TP
+.B %s
+Print a string.
+.TP
+.B %d
+Print a decimal integer.
+.TP
+.B %i
+Print an integer.
+.TP
+.B %%
+Print a percent sign.
+.SH RETURN VALUE
+Upon success, returns the number of characters printed (excluding the null byte used to end output to strings).
+.P
+If
+.I format
+is NULL, the function returns \-1.
+.SH EXAMPLES
+Printing a character:
+.nf
+_printf("Character:[%c]\n", 'H');
+.fi
+.P
+Printing a string:
+.nf
+_printf("String:[%s]\n", "I am a string !");
+.fi
+.P
+Printing an integer with %d:
+.nf
+_printf("Negative:[%d]\n", -762534);
+.fi
+.P
+Printing an integer with %i:
+.nf
+_printf("Length:[%d, %i]\n", 39, 39);
+.fi
+.P
+Printing a percent sign:
+.nf
+_printf("Percent:[%%]\n");
+.fi
+.SH AUTHOR
+Joshua Santiago \- Antonio Torres \- Luis F Gonzalez
+.SH SEE ALSO
+.BR printf (3),
+.BR write (2),
+.BR stdarg (3)
