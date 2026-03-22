@@ -49,6 +49,7 @@ int print_int(va_list args)
 	int count;
 	char *buffer;
 	int i;
+	unsigned int unum;
 
 	num = va_arg(args, int);
 	if (num == 0)
@@ -64,13 +65,15 @@ int print_int(va_list args)
 	{
 		write(1, "-", 1);
 		count++;
-		num = -num;
+		unum = (unsigned int)(-(num + 1)) + 1;
 	}
+	else
+		unum = (unsigned int)num;
 	i = 0;
-	while (num > 0)
+	while (unum > 0)
 	{
-		buffer[i++] = (num % 10) + '0';
-		num /= 10;
+		buffer[i++] = (unum % 10) + '0';
+		unum /= 10;
 	}
 	while (i > 0)
 	{
