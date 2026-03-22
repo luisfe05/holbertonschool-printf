@@ -19,6 +19,7 @@ Supported format specifiers:
 - `%%` - prints a literal percent sign
 
 ## Prototype
+
 ```c
 int _printf(const char *format, ...);
 ```
