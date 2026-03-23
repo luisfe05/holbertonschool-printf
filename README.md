@@ -17,7 +17,8 @@ Supported format specifiers:
 - `%d` - prints a decimal integer
 - `%i` - prints an integer
 - `%%` - prints a literal percent sign
-
+- `%x` - prints hex number
+- `%o` - prints a octo number
 ## Prototype
 
 ```c
