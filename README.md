@@ -28,4 +28,5 @@ int _printf(const char *format, ...);
 
 - `main.h` - Header file containing function prototypes.
 - `_printf.c` - Implementation of the custom `_printf` function.
+- `helper_functions.c` - Helper functions: `print_char`, `print_string`, `print_number`, `manager_int`.
 - `man_3_printf.3` - Man page with information about `_printf`.

@@ -1,9 +1,9 @@
 #include "main.h"
-#include <stdlib.h>
 
 /**
  * print_char - print a single character
- * @args: va_list of arguments
+ * @args: va_list containing the character
+ *
  * Return: number of characters printed
  */
 int print_char(va_list args)
@@ -17,7 +17,8 @@ int print_char(va_list args)
 
 /**
  * print_string - print a string
- * @args: va_list of arguments
+ * @args: va_list containing the string
+ *
  * Return: number of characters printed
  */
 int print_string(va_list args)
@@ -39,47 +40,49 @@ int print_string(va_list args)
 }
 
 /**
- * print_int - print an integer
- * @args: va_list of arguments
+ * print_number - prints an unsigned number recursively
+ * @num: the unsigned number to print
+ *
  * Return: number of characters printed
  */
-int print_int(va_list args)
+int print_number(unsigned int num)
 {
-	int num;
-	int count;
-	char *buffer;
-	int i;
-	unsigned int unum;
+	int count = 0;
+	char c;
 
-	num = va_arg(args, int);
-	if (num == 0)
-	{
-		write(1, "0", 1);
-		return (1);
-	}
-	buffer = malloc(12 * sizeof(char));
-	if (buffer == NULL)
-		return (-1);
-	count = 0;
-	if (num < 0)
+	if (num >= 10) /* print all digits before the last one first */
+		count += print_number(num / 10);
+
+	c = (num % 10) + '0'; /* convert digit to ASCII character */
+	write(1, &c, 1);
+	count++;
+
+	return (count);
+}
+
+/**
+ * manager_int - prints an integer argument
+ * @args: va_list containing the integer
+ *
+ * Return: number of characters printed
+ */
+int manager_int(va_list args)
+{
+	int n;
+	unsigned int num;
+	int count = 0;
+
+	n = va_arg(args, int);
+
+	if (n < 0)
 	{
 		write(1, "-", 1);
 		count++;
-		unum = (unsigned int)(-(num + 1)) + 1;
+		num = (unsigned int)(-(n + 1)) + 1; /* safe conversion, handles INT_MIN */
 	}
 	else
-		unum = (unsigned int)num;
-	i = 0;
-	while (unum > 0)
-	{
-		buffer[i++] = (unum % 10) + '0';
-		unum /= 10;
-	}
-	while (i > 0)
-	{
-		write(1, &buffer[--i], 1);
-		count++;
-	}
-	free(buffer);
+		num = (unsigned int)n;
+
+	count += print_number(num);
 	return (count);
 }
